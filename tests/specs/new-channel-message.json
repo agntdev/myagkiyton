@@ -1,0 +1,20 @@
+[
+  {
+    "name": "New channel message",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Trigger processing workflow when user posts text/voice in public channel"
+            }
+          }
+        ],
+        "send": {
+          "callback": "menu:new-channel-message"
+        }
+      }
+    ]
+  }
+]
