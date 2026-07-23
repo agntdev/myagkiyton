@@ -1,17 +1,24 @@
 import { Composer } from "grammy";
+import { inlineButton, inlineKeyboard } from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "New channel message", data: "menu:new-channel-message" }) if the toolkit exposes it.
+// New Channel Message — entry point for processing messages that appear in the
+// public channel. When a user posts text or voice in a channel where the bot is
+// an admin, this handler triggers the softening workflow. For now it provides a
+// landing page; the actual processing happens in process-message.ts.
 
 const composer = new Composer();
 
+const CHANNEL_INFO =
+  "When you post text or voice in a public channel where the bot is an admin, " +
+  "the message is automatically processed and you receive a private DM with a " +
+  "softened draft.\n\n" +
+  "Make sure the bot is added as an admin to your channel.";
+
 composer.callbackQuery("menu:new-channel-message", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Trigger processing workflow when user posts text/voice in public channel");
+  await ctx.reply(CHANNEL_INFO, {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]),
+  });
 });
 
 export default composer;

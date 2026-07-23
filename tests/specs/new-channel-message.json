@@ -3,17 +3,17 @@
     "name": "New channel message",
     "steps": [
       {
+        "send": {
+          "callback": "menu:new-channel-message"
+        },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Trigger processing workflow when user posts text/voice in public channel"
+              "text": "When you post text or voice in a public channel where the bot is an admin, the message is automatically processed and you receive a private DM with a softened draft.\n\nMake sure the bot is added as an admin to your channel."
             }
           }
-        ],
-        "send": {
-          "callback": "menu:new-channel-message"
-        }
+        ]
       }
     ]
   }

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Process message menu shows instructions",
+    "steps": [
+      {
+        "send": { "callback": "process:menu" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "✉️ Send me a text message and I will generate a softened version for you.\n\nYou will receive a DM with the draft and can choose to accept or reject it."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Text message generates softened draft",
+    "steps": [
+      {
+        "send": { "callback": "process:menu" },
+        "expect": [
+          { "method": "editMessageText" }
+        ]
+      },
+      {
+        "send": { "text": "Ты идиот, зачем ты это сделал" },
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Here is your softened draft:\n\nТы некорректный человек, зачем ты это сделал"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Harsh Russian text is softened",
+    "steps": [
+      {
+        "send": { "callback": "process:menu" },
+        "expect": [
+          { "method": "editMessageText" }
+        ]
+      },
+      {
+        "send": { "text": "Ненавижу этот кошмар, это отвратительно" },
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Here is your softened draft:\n\nМне не нравится этот сложная ситуация, это не совсем приятно"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
