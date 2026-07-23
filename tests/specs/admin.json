@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Admin menu shows settings panel",
+    "steps": [
+      {
+        "send": { "callback": "admin:menu" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "⚙️ Admin panel\n\nManage your bot settings from here."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Channel access shows configuration info",
+    "steps": [
+      {
+        "send": { "callback": "admin:channel" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "📡 Channel access\n\nConfigure which channel the bot monitors for messages.\nCurrent: not configured.\n\nAdd the bot as an admin to your channel to get started."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Retention shows default period",
+    "steps": [
+      {
+        "send": { "callback": "admin:retention" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "🗓 Retention\n\nSubmissions and drafts are kept for 90 days by default.\nYou can change this in the bot's configuration."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Audit logs shows empty state",
+    "steps": [
+      {
+        "send": { "callback": "admin:audit" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "📋 Audit logs\n\nNo submissions yet. Once users start processing messages, their activity will appear here."
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

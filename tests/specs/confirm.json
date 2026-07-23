@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Accept draft shows repost option",
+    "steps": [
+      {
+        "send": { "callback": "draft:accept" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "Draft accepted! You can now repost it to the channel."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Reject draft shows retry message",
+    "steps": [
+      {
+        "send": { "callback": "draft:reject" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "Draft rejected. Send me another message to try again."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Repost confirms delivery",
+    "steps": [
+      {
+        "send": { "callback": "draft:repost" },
+        "expect": [
+          {
+            "method": "editMessageText",
+            "payload": {
+              "text": "Reposted to the channel successfully!"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
